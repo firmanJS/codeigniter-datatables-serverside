@@ -1,0 +1,18 @@
+#local
+<IfModule mod_rewrite.c>
+# 2 ---- menyembunyikan list folder ----
+
+IndexIgnore * *.jpg*.txt*.html*.php
+
+# ---- Make pages render without their extension in the url
+Options +MultiViews
+
+php_value upload_max_filesize 10M
+php_value post_max_size 10M
+
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule .* index.php/$0 [PT,L]
+
+</IfModule>
